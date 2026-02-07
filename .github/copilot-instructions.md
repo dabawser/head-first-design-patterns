@@ -18,7 +18,6 @@ This repository contains the Head First Design Patterns solution, built with .NE
 ## Coding Standards
 - Place `using` directives outside namespaces.
 - Order elements by kind, constant, accessibility, static, readonly.
-- Allowed Hungarian prefix: `db`.
 - Document interfaces; internal/private elements do not require XML docs.
 - Use PascalCase for class, method, and property names.
 - Use camelCase for local variables and parameters.
