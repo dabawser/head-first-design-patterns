@@ -42,7 +42,8 @@ dotnet build
 Navigate to a pattern directory and run:
 
 ```bash
-dotnet run --project <pattern-name>
+# From the repository root:
+dotnet run --project Strategy/Strategy.csproj
 ```
 
 ### Running Tests
