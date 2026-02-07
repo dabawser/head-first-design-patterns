@@ -1,9 +1,40 @@
-﻿using Strategy.Models;
+﻿using Strategy.Behaviors;
+using Strategy.Models;
 
 namespace Strategy.Tests;
 
 public class DuckTests
 {
+    [Fact]
+    public void SetFlyBehavior_WhenCalled_ThenUpdatesFlyBehavior()
+    {
+        // Arrange
+        var mallardDuck = new MallardDuck();
+        var flyWithRocket = new FlyRocketPowered();
+
+        // Act
+        mallardDuck.SetFlyBehavior(flyWithRocket);
+        var fly = mallardDuck.PerformFly();
+
+        // Assert
+        Assert.Equal("I'm flying with a rocket!", fly);
+    }
+    
+    [Fact]
+    public void SetQuackBehavior_WhenCalled_ThenUpdatesQuackBehavior()
+    {
+        // Arrange
+        var mallardDuck = new MallardDuck();
+        var squeak = new Squeak();
+
+        // Act
+        mallardDuck.SetQuackBehavior(squeak);
+        var quack = mallardDuck.PerformQuack();
+
+        // Assert
+        Assert.Equal("Squeak", quack);
+    }
+    
     [Fact]
     public void MallardDuck_WhenPerformQuack_ThenRealQuack()
     {
