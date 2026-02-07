@@ -1,4 +1,4 @@
-namespace Strategy.Behaviors;
+﻿namespace Strategy.Behaviors;
 
 /// <summary>
 /// The IQuackBehavior interface defines the contract for quack behaviors that can be assigned to ducks.

@@ -1,4 +1,4 @@
-using Strategy.Behaviors;
+﻿using Strategy.Behaviors;
 
 namespace Strategy.Models;
 

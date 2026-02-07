@@ -1,4 +1,4 @@
-namespace Strategy.Behaviors;
+﻿namespace Strategy.Behaviors;
 
 /// <summary>
 /// The IFlyBehavior interface defines the contract for fly behaviors that can be assigned to ducks.
