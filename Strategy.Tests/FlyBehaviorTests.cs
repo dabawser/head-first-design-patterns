@@ -1,4 +1,4 @@
-using Strategy.Behaviors;
+﻿using Strategy.Behaviors;
 
 namespace Strategy.Tests;
 
@@ -43,4 +43,3 @@ public class FlyBehaviorTests
         Assert.Equal("I'm flying with a rocket!", result);
     }
 }
-

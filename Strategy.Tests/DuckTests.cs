@@ -19,7 +19,7 @@ public class DuckTests
         // Assert
         Assert.Equal("I'm flying with a rocket!", fly);
     }
-    
+
     [Fact]
     public void SetQuackBehavior_WhenCalled_ThenUpdatesQuackBehavior()
     {
@@ -34,7 +34,7 @@ public class DuckTests
         // Assert
         Assert.Equal("Squeak", quack);
     }
-    
+
     [Fact]
     public void MallardDuck_WhenPerformQuack_ThenRealQuack()
     {
@@ -60,7 +60,7 @@ public class DuckTests
         // Assert
         Assert.Equal("I'm flying!!", fly);
     }
-    
+
     [Fact]
     public void MallardDuck_WhenSwim_ThenFloats()
     {
@@ -112,7 +112,7 @@ public class DuckTests
         // Assert
         Assert.Equal("I'm flying!!", fly);
     }
-    
+
     [Fact]
     public void RedheadDuck_WhenSwim_ThenFloats()
     {
@@ -164,7 +164,7 @@ public class DuckTests
         // Assert
         Assert.Equal("I can't fly", fly);
     }
-    
+
     [Fact]
     public void RubberDuck_WhenSwim_ThenFloats()
     {
@@ -216,7 +216,7 @@ public class DuckTests
         // Assert
         Assert.Equal("I can't fly", fly);
     }
-    
+
     [Fact]
     public void DecoyDuck_WhenSwim_ThenFloats()
     {

@@ -1,4 +1,4 @@
-using Strategy.Behaviors;
+﻿using Strategy.Behaviors;
 
 namespace Strategy.Models;
 
@@ -23,7 +23,7 @@ public abstract class Duck(IFlyBehavior flyBehavior, IQuackBehavior quackBehavio
     {
         _quackBehavior = quackBehavior;
     }
-    
+
     public string PerformFly()
     {
         return _flyBehavior.PerformFly();

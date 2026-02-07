@@ -1,4 +1,4 @@
-namespace Strategy.Behaviors;
+﻿namespace Strategy.Behaviors;
 
 public class FlyWithWings : IFlyBehavior
 {
