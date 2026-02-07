@@ -11,14 +11,27 @@ namespace Strategy.Models;
 /// </summary>
 public abstract class Duck(IFlyBehavior flyBehavior, IQuackBehavior quackBehavior)
 {
+    private IFlyBehavior _flyBehavior = flyBehavior;
+    private IQuackBehavior _quackBehavior = quackBehavior;
+
+    public void SetFlyBehavior(IFlyBehavior flyBehavior)
+    {
+        _flyBehavior = flyBehavior;
+    }
+
+    public void SetQuackBehavior(IQuackBehavior quackBehavior)
+    {
+        _quackBehavior = quackBehavior;
+    }
+    
     public string PerformFly()
     {
-        return flyBehavior.PerformFly();
+        return _flyBehavior.PerformFly();
     }
 
     public string PerformQuack()
     {
-        return quackBehavior.PerformQuack();
+        return _quackBehavior.PerformQuack();
     }
 
     public string Swim()
