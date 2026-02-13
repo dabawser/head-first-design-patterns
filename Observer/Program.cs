@@ -1,3 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Observer.Subjects;
 
-Console.WriteLine("Hello, World!");
+var weatherStation = new WeatherData();
+
+weatherStation.MeasurementsChanged();
