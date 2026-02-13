@@ -234,7 +234,7 @@ dotnet_diagnostic.ASP0014.severity = suggestion
 # .NET Analyzers              #
 ###############################
 
-dotnet_diagnostic.CA1303.severity = suggestion
+dotnet_diagnostic.CA1303.severity = none
 dotnet_diagnostic.CA1715.severity = error
 dotnet_diagnostic.CA1001.severity = warning
 dotnet_diagnostic.CA1009.severity = warning

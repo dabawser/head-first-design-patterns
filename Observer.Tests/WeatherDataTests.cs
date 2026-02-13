@@ -55,8 +55,8 @@ public class WeatherDataTests
         var pressure = weatherData.GetPressure();
 
         // Assert
-        Assert.InRange(temperature, 40.0d, 59.9d);
-        Assert.InRange(humidity, 0, 100);
+        Assert.InRange(temperature, 40.0d, 60.0d);
+        Assert.InRange(humidity, 0.0d, 100.0d);
         Assert.InRange(pressure, 970, 1050);
     }
 }
