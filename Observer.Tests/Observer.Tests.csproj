@@ -15,4 +15,7 @@
         <Using Include="Xunit"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Observer\Observer.csproj" />
+    </ItemGroup>
 </Project>
