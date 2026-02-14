@@ -14,3 +14,7 @@ weatherStation.RegisterObserver(forecastDisplay);
 weatherStation.RegisterObserver(thirdPartyDisplay);
 
 weatherStation.MeasurementsChanged();
+weatherStation.MeasurementsChanged();
+weatherStation.MeasurementsChanged();
+weatherStation.MeasurementsChanged();
+weatherStation.MeasurementsChanged();

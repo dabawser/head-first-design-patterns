@@ -1,54 +1,22 @@
-﻿using Moq;
-using Observer.Observers;
-using Observer.Subjects;
+﻿using Observer.Observers;
 
 namespace Observer.Tests;
 
-[Collection(nameof(ConsoleOutputFixture))]
 public class StatisticsDisplayTests
 {
     [Fact]
-    public void Update_WhenCalled_ThenDisplaysTemperatureStatistics()
+    public void Update_WhenCalled_ThenDisplaysMeasurementStatistics()
     {
         // Arrange
-        using var fixture = new ConsoleOutputFixture();
-        var weatherDataMock = new Mock<WeatherData>();
-        var statisticsDisplay = new StatisticsDisplay(weatherDataMock.Object);
+        var weatherDataMock = WeatherDataFixture.CreateWeatherDataMock();
+        var statisticsDisplay = new StatisticsDisplay(weatherDataMock);
 
         // Act
         statisticsDisplay.Update();
 
         // Assert
-        Assert.Contains("Avg/Min/Max temperature", fixture.GetOutput());
-    }
-
-    [Fact]
-    public void Update_WhenCalled_ThenDisplaysHumidityStatistics()
-    {
-        // Arrange
-        using var fixture = new ConsoleOutputFixture();
-        var weatherDataMock = new Mock<WeatherData>();
-        var statisticsDisplay = new StatisticsDisplay(weatherDataMock.Object);
-
-        // Act
-        statisticsDisplay.Update();
-
-        // Assert
-        Assert.Contains("Avg/Min/Max humidity", fixture.GetOutput());
-    }
-
-    [Fact]
-    public void Update_WhenCalled_ThenDisplaysPressureStatistics()
-    {
-        // Arrange
-        using var fixture = new ConsoleOutputFixture();
-        var weatherDataMock = new Mock<WeatherData>();
-        var statisticsDisplay = new StatisticsDisplay(weatherDataMock.Object);
-
-        // Act
-        statisticsDisplay.Update();
-
-        // Assert
-        Assert.Contains("Avg/Min/Max pressure", fixture.GetOutput());
+        Assert.Equal(
+            "Avg/Min/Max temperature = 40,5/0/40,5\nAvg/Min/Max humidity = 85,5/0/85,5\nAvg/Min/Max pressure = 1000/0/1000\n",
+            statisticsDisplay.Display());
     }
 }

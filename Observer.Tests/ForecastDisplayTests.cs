@@ -1,25 +1,25 @@
-﻿using Moq;
-using Observer.Observers;
-using Observer.Subjects;
+﻿using Observer.Observers;
 
 namespace Observer.Tests;
 
-[Collection(nameof(ConsoleOutputFixture))]
 public class ForecastDisplayTests
 {
     [Fact]
     public void Update_WhenCalled_ThenDisplaysForecast()
     {
         // Arrange
-        using var fixture = new ConsoleOutputFixture();
-        var weatherDataMock = new Mock<WeatherData>();
-        var forecastDisplay = new ForecastDisplay(weatherDataMock.Object);
+        const double temperature = 40.2;
+        const double humidity = 75.0;
+        const int pressure = 1010;
+
+        var weatherDataMock = WeatherDataFixture.CreateWeatherDataMock(temperature, humidity, pressure);
+        var forecastDisplay = new ForecastDisplay(weatherDataMock);
 
         // Act
         forecastDisplay.Update();
+        var displayOutput = forecastDisplay.Display();
 
         // Assert
-        var output = fixture.GetOutput();
-        Assert.Contains("Forecast:", output);
+        Assert.Equal("Forecast: \nWarming trend - expect warmer weather!\n", displayOutput);
     }
 }

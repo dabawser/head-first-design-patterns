@@ -1,98 +1,100 @@
-﻿using Observer.Subjects;
+﻿using System.Text;
+using Observer.Subjects;
 
 namespace Observer.Observers;
 
-public class StatisticsDisplay(WeatherData weatherData) : IObserver
+public class StatisticsDisplay(WeatherData weatherData) : IWeatherObserver, IDisplay
 {
-    private double _minTemperature = double.MaxValue;
-    private double _maxTemperature = double.MinValue;
+    private readonly MeasurementStatistics _measurementStatistics = new();
     private double _temperatureSum;
     private int _temperatureMeasurementCount;
 
-    private double _minHumidity = double.MaxValue;
-    private double _maxHumidity = double.MinValue;
     private double _humiditySum;
     private int _humidityMeasurementCount;
 
-    private int _minPressure = int.MaxValue;
-    private int _maxPressure = int.MinValue;
     private int _pressureSum;
     private int _pressureMeasurementCount;
 
     public void Update()
     {
-        var (tempAvg, tempMin, tempMax) = UpdateTemperatureStatistics();
-        var (humAvg, humMin, humMax) = UpdateHumidityStatistics();
-        var (presAvg, presMin, presMax) = UpdatePressureStatistics();
+        UpdateTemperatureStatistics();
+        UpdateHumidityStatistics();
+        UpdatePressureStatistics();
 
-        Console.WriteLine($"Avg/Min/Max temperature = {tempAvg}/{tempMin}/{tempMax}");
-        Console.WriteLine($"Avg/Min/Max humidity = {humAvg}/{humMin}/{humMax}");
-        Console.WriteLine($"Avg/Min/Max pressure = {presAvg}/{presMin}/{presMax}");
+        Display();
     }
 
-    private (double Avg, double Min, double Max) UpdateTemperatureStatistics()
+    public string Display()
+    {
+        var stringBuilder = new StringBuilder();
+
+        stringBuilder.AppendLine($"Avg/Min/Max temperature = {_measurementStatistics.TemperatureAverage}/{_measurementStatistics.TemperatureMin}/{_measurementStatistics.TemperatureMax}");
+        stringBuilder.AppendLine($"Avg/Min/Max humidity = {_measurementStatistics.HumidityAverage}/{_measurementStatistics.HumidityMin}/{_measurementStatistics.HumidityMax}");
+        stringBuilder.AppendLine($"Avg/Min/Max pressure = {_measurementStatistics.PressureAverage}/{_measurementStatistics.PressureMin}/{_measurementStatistics.PressureMax}");
+
+        var output = stringBuilder.ToString();
+        Console.WriteLine(output);
+
+        return output;
+    }
+
+    private void UpdateTemperatureStatistics()
     {
         var temperature = weatherData.GetTemperature();
 
         _temperatureSum += temperature;
         _temperatureMeasurementCount++;
 
-        if (temperature < _minTemperature)
+        if (temperature < _measurementStatistics.TemperatureMin)
         {
-            _minTemperature = temperature;
+            _measurementStatistics.TemperatureMin = temperature;
         }
 
-        if (temperature > _maxTemperature)
+        if (temperature > _measurementStatistics.TemperatureMax)
         {
-            _maxTemperature = temperature;
+            _measurementStatistics.TemperatureMax = temperature;
         }
 
-        var averageTemperature = _temperatureSum / _temperatureMeasurementCount;
-
-        return (averageTemperature, _minTemperature, _maxTemperature);
+        _measurementStatistics.TemperatureAverage = _temperatureSum / _temperatureMeasurementCount;
     }
 
-    private (double Avg, double Min, double Max) UpdateHumidityStatistics()
+    private void UpdateHumidityStatistics()
     {
         var humidity = weatherData.GetHumidity();
 
         _humiditySum += humidity;
         _humidityMeasurementCount++;
 
-        if (humidity < _minHumidity)
+        if (humidity < _measurementStatistics.HumidityMin)
         {
-            _minHumidity = humidity;
+            _measurementStatistics.HumidityMin = humidity;
         }
 
-        if (humidity > _maxHumidity)
+        if (humidity > _measurementStatistics.HumidityMax)
         {
-            _maxHumidity = humidity;
+            _measurementStatistics.HumidityMax = humidity;
         }
 
-        var averageHumidity = _humiditySum / _humidityMeasurementCount;
-
-        return (averageHumidity, _minHumidity, _maxHumidity);
+        _measurementStatistics.HumidityAverage = _humiditySum / _humidityMeasurementCount;
     }
 
-    private (int Avg, int Min, int Max) UpdatePressureStatistics()
+    private void UpdatePressureStatistics()
     {
         var pressure = weatherData.GetPressure();
 
         _pressureSum += pressure;
         _pressureMeasurementCount++;
 
-        if (pressure < _minPressure)
+        if (pressure < _measurementStatistics.PressureMin)
         {
-            _minPressure = pressure;
+            _measurementStatistics.PressureMin = pressure;
         }
 
-        if (pressure > _maxPressure)
+        if (pressure > _measurementStatistics.PressureMax)
         {
-            _maxPressure = pressure;
+            _measurementStatistics.PressureMax = pressure;
         }
 
-        var averagePressure = _pressureSum / _pressureMeasurementCount;
-
-        return (averagePressure, _minPressure, _maxPressure);
+        _measurementStatistics.PressureAverage = _pressureSum / _pressureMeasurementCount;
     }
 }

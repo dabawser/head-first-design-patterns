@@ -2,19 +2,19 @@
 
 namespace Observer.Subjects;
 
-public class WeatherData : ISubject
+public class WeatherData : IWeatherSubject
 {
-    private readonly List<IObserver> _observers = new();
+    private readonly List<IWeatherObserver> _observers = new();
     private readonly Random _random = new();
 
-    public void RegisterObserver(IObserver observer)
+    public void RegisterObserver(IWeatherObserver weatherObserver)
     {
-        _observers.Add(observer);
+        _observers.Add(weatherObserver);
     }
 
-    public void RemoveObserver(IObserver observer)
+    public void RemoveObserver(IWeatherObserver weatherObserver)
     {
-        _observers.Remove(observer);
+        _observers.Remove(weatherObserver);
     }
 
     public void NotifyObservers()
@@ -27,9 +27,9 @@ public class WeatherData : ISubject
         NotifyObservers();
     }
 
-    public double GetTemperature() => 40.0d + (_random.NextDouble() * 19.9d);
+    public virtual double GetTemperature() => -40.0d + (_random.NextDouble() * 99.9d);
 
-    public int GetHumidity() => _random.Next(0, 101);
+    public virtual double GetHumidity() => _random.Next(0, 101);
 
-    public int GetPressure() => _random.Next(970, 1051);
+    public virtual int GetPressure() => _random.Next(970, 1051);
 }

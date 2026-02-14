@@ -1,11 +1,12 @@
-﻿using Observer.Subjects;
+﻿using System.Text;
+using Observer.Subjects;
 
 namespace Observer.Observers;
 
-public class ForecastDisplay(WeatherData weatherData) : IObserver
+public class ForecastDisplay(WeatherData weatherData) : IWeatherObserver, IDisplay
 {
     private double _currentTemperature;
-    private double _lastTemperature;
+    private double _lastTemperature = 20.0;
 
     public void Update()
     {
@@ -15,21 +16,27 @@ public class ForecastDisplay(WeatherData weatherData) : IObserver
         Display();
     }
 
-    private void Display()
+    public string Display()
     {
-        Console.WriteLine("Forecast: ");
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine("Forecast: ");
 
         if (_currentTemperature > _lastTemperature)
         {
-            Console.WriteLine("Warming trend - expect warmer weather!");
+            stringBuilder.AppendLine("Warming trend - expect warmer weather!");
         }
         else if (_currentTemperature.Equals(_lastTemperature))
         {
-            Console.WriteLine("More of the same");
+            stringBuilder.AppendLine("More of the same");
         }
         else
         {
-            Console.WriteLine("Cooling trend - expect cooler weather");
+            stringBuilder.AppendLine("Cooling trend - expect cooler weather");
         }
+
+        var output = stringBuilder.ToString();
+        Console.WriteLine(output);
+
+        return output;
     }
 }

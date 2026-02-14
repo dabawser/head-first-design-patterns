@@ -11,8 +11,8 @@ public class WeatherDataTests
     {
         // Arrange
         var weatherData = new WeatherData();
-        var observer1 = new Mock<IObserver>();
-        var observer2 = new Mock<IObserver>();
+        var observer1 = new Mock<IWeatherObserver>();
+        var observer2 = new Mock<IWeatherObserver>();
         weatherData.RegisterObserver(observer1.Object);
         weatherData.RegisterObserver(observer2.Object);
 
@@ -29,8 +29,8 @@ public class WeatherDataTests
     {
         // Arrange
         var weatherData = new WeatherData();
-        var observer1 = new Mock<IObserver>();
-        var observer2 = new Mock<IObserver>();
+        var observer1 = new Mock<IWeatherObserver>();
+        var observer2 = new Mock<IWeatherObserver>();
         weatherData.RegisterObserver(observer1.Object);
         weatherData.RegisterObserver(observer2.Object);
         weatherData.RemoveObserver(observer1.Object);
@@ -55,7 +55,7 @@ public class WeatherDataTests
         var pressure = weatherData.GetPressure();
 
         // Assert
-        Assert.InRange(temperature, 40.0d, 60.0d);
+        Assert.InRange(temperature, -40.0d, 60.0d);
         Assert.InRange(humidity, 0.0d, 100.0d);
         Assert.InRange(pressure, 970, 1050);
     }

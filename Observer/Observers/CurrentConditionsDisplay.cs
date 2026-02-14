@@ -1,15 +1,31 @@
-﻿using Observer.Subjects;
+﻿using System.Text;
+using Observer.Subjects;
 
 namespace Observer.Observers;
 
-public class CurrentConditionsDisplay(WeatherData weatherData) : IObserver
+public class CurrentConditionsDisplay(WeatherData weatherData) : IWeatherObserver, IDisplay
 {
+    private double _currentTemperature;
+    private double _currentHumidity;
+    private int _currentPressure;
+
     public void Update()
     {
-        var temperature = weatherData.GetTemperature();
-        var humidity = weatherData.GetHumidity();
-        var pressure = weatherData.GetPressure();
+        _currentTemperature = weatherData.GetTemperature();
+        _currentHumidity = weatherData.GetHumidity();
+        _currentPressure = weatherData.GetPressure();
 
-        Console.WriteLine($"Current conditions: {temperature}C degrees and {humidity}% humidity and {pressure} hPa pressure");
+        Display();
+    }
+
+    public string Display()
+    {
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine($"Current conditions: {_currentTemperature}C degrees and {_currentHumidity}% humidity and {_currentPressure} hPa pressure.");
+
+        var output = stringBuilder.ToString();
+        Console.WriteLine(output);
+
+        return output;
     }
 }

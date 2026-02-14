@@ -1,6 +1,5 @@
-﻿using Moq;
+﻿using System.Text;
 using Observer.Observers;
-using Observer.Subjects;
 
 namespace Observer.Tests;
 
@@ -10,15 +9,26 @@ public class ThirdPartyDisplayTests
     public void Update_WhenCalled_ThenDisplaysThirdPartyData()
     {
         // Arrange
-        using var fixture = new ConsoleOutputFixture();
-        var weatherDataMock = new Mock<WeatherData>();
-        var thirdPartyDisplay = new ThirdPartyDisplay(weatherDataMock.Object);
+        var expectedOutput = CreateExpectedOutput();
+        var weatherDataMock = WeatherDataFixture.CreateWeatherDataMock();
+        var thirdPartyDisplay = new ThirdPartyDisplay(weatherDataMock);
 
         // Act
         thirdPartyDisplay.Update();
+        var displayOutput = thirdPartyDisplay.Display();
 
         // Assert
-        var output = fixture.GetOutput();
-        Assert.Contains("=== Third Party Weather Display ===", output);
+        Assert.Equal(expectedOutput, displayOutput);
+    }
+
+    private static string CreateExpectedOutput()
+    {
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine("=== Third Party Weather Display ===");
+        stringBuilder.AppendLine("Temperature: 40,5°C");
+        stringBuilder.AppendLine("Humidity: 85,5%");
+        stringBuilder.AppendLine("Pressure: 1000 hPa");
+        stringBuilder.Append("===================================");
+        return stringBuilder.ToString();
     }
 }

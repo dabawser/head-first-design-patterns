@@ -1,19 +1,34 @@
-﻿using Observer.Subjects;
+﻿using System.Text;
+using Observer.Subjects;
 
 namespace Observer.Observers;
 
-public class ThirdPartyDisplay(WeatherData weatherData) : IObserver
+public class ThirdPartyDisplay(WeatherData weatherData) : IWeatherObserver, IDisplay
 {
+    private double _currentTemperature;
+    private double _currentHumidity;
+    private int _currentPressure;
+
     public void Update()
     {
-        var temperature = weatherData.GetTemperature();
-        var humidity = weatherData.GetHumidity();
-        var pressure = weatherData.GetPressure();
+        _currentTemperature = weatherData.GetTemperature();
+        _currentHumidity = weatherData.GetHumidity();
+        _currentPressure = weatherData.GetPressure();
 
-        Console.WriteLine("=== Third Party Weather Display ===");
-        Console.WriteLine($"Temperature: {temperature:F1}°C");
-        Console.WriteLine($"Humidity: {humidity}%");
-        Console.WriteLine($"Pressure: {pressure} hPa");
-        Console.WriteLine("===================================");
+        Display();
+    }
+
+    public string Display()
+    {
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine("=== Third Party Weather Display ===");
+        stringBuilder.AppendLine($"Temperature: {_currentTemperature}°C");
+        stringBuilder.AppendLine($"Humidity: {_currentHumidity}%");
+        stringBuilder.AppendLine($"Pressure: {_currentPressure} hPa");
+        stringBuilder.Append("===================================");
+        var output = stringBuilder.ToString();
+        Console.WriteLine(output);
+
+        return output;
     }
 }
