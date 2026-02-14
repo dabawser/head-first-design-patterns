@@ -2,19 +2,19 @@
 
 namespace Observer.Subjects;
 
-public class WeatherData() : ISubject
+public class WeatherData : IWeatherSubject
 {
-    private readonly List<IObserver> _observers = new();
-    private readonly Random _random = new();
+    private readonly List<IWeatherObserver> _observers = new();
+    private static readonly Random _random = new();
 
-    public void RegisterObserver(IObserver observer)
+    public void RegisterObserver(IWeatherObserver weatherObserver)
     {
-        _observers.Add(observer);
+        _observers.Add(weatherObserver);
     }
 
-    public void RemoveObserver(IObserver observer)
+    public void RemoveObserver(IWeatherObserver weatherObserver)
     {
-        _observers.Remove(observer);
+        _observers.Remove(weatherObserver);
     }
 
     public void NotifyObservers()
@@ -27,21 +27,9 @@ public class WeatherData() : ISubject
         NotifyObservers();
     }
 
-    public double GetTemperature()
-    {
-        // Returns temperature in Celsius between 40.0°C and 59.9°C
-        return 40.0d + (_random.NextDouble() * 19.9d);
-    }
+    public virtual int GetTemperature() => -40 + _random.Next(0, 100);
 
-    public int GetHumidity()
-    {
-        // Returns humidity percentage between 0% and 100%
-        return _random.Next(0, 101);
-    }
+    public virtual int GetHumidity() => _random.Next(0, 101);
 
-    public int GetPressure()
-    {
-        // Returns pressure in hectopascals between 970 hPa and 1050 hPa
-        return _random.Next(970, 1051);
-    }
+    public virtual int GetPressure() => _random.Next(970, 1051);
 }
