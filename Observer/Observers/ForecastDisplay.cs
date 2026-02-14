@@ -3,15 +3,27 @@ using Observer.Subjects;
 
 namespace Observer.Observers;
 
-public class ForecastDisplay(IWeatherSubject weatherSubject) : IWeatherObserver, IDisplay
+public class ForecastDisplay : IWeatherObserver, IDisplay
 {
+    private readonly IWeatherSubject _weatherSubject;
     private int _currentTemperature;
     private int _lastTemperature = 20;
+
+    public ForecastDisplay(IWeatherSubject weatherSubject)
+    {
+        _weatherSubject = weatherSubject;
+        _weatherSubject.RegisterObserver(this);
+    }
+
+    ~ForecastDisplay()
+    {
+        _weatherSubject.RemoveObserver(this);
+    }
 
     public void Update()
     {
         _lastTemperature = _currentTemperature;
-        _currentTemperature = weatherSubject.GetTemperature();
+        _currentTemperature = _weatherSubject.GetTemperature();
 
         Display();
     }

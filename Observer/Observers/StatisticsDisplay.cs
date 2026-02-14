@@ -3,17 +3,27 @@ using Observer.Subjects;
 
 namespace Observer.Observers;
 
-public class StatisticsDisplay(IWeatherSubject weatherSubject) : IWeatherObserver, IDisplay
+public class StatisticsDisplay : IWeatherObserver, IDisplay
 {
+    private readonly IWeatherSubject _weatherSubject;
     private readonly MeasurementStatistics _measurementStatistics = new();
     private double _temperatureSum;
     private int _temperatureMeasurementCount;
-
     private double _humiditySum;
     private int _humidityMeasurementCount;
-
     private double _pressureSum;
     private int _pressureMeasurementCount;
+
+    public StatisticsDisplay(IWeatherSubject weatherSubject)
+    {
+        _weatherSubject = weatherSubject;
+        _weatherSubject.RegisterObserver(this);
+    }
+
+    ~StatisticsDisplay()
+    {
+        _weatherSubject.RemoveObserver(this);
+    }
 
     public void Update()
     {
@@ -40,7 +50,7 @@ public class StatisticsDisplay(IWeatherSubject weatherSubject) : IWeatherObserve
 
     private void UpdateTemperatureStatistics()
     {
-        var temperature = weatherSubject.GetTemperature();
+        var temperature = _weatherSubject.GetTemperature();
 
         _temperatureSum += temperature;
         _temperatureMeasurementCount++;
@@ -60,7 +70,7 @@ public class StatisticsDisplay(IWeatherSubject weatherSubject) : IWeatherObserve
 
     private void UpdateHumidityStatistics()
     {
-        var humidity = weatherSubject.GetHumidity();
+        var humidity = _weatherSubject.GetHumidity();
 
         _humiditySum += humidity;
         _humidityMeasurementCount++;
@@ -80,7 +90,7 @@ public class StatisticsDisplay(IWeatherSubject weatherSubject) : IWeatherObserve
 
     private void UpdatePressureStatistics()
     {
-        var pressure = weatherSubject.GetPressure();
+        var pressure = _weatherSubject.GetPressure();
 
         _pressureSum += pressure;
         _pressureMeasurementCount++;

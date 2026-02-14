@@ -3,17 +3,29 @@ using Observer.Subjects;
 
 namespace Observer.Observers;
 
-public class ThirdPartyDisplay(IWeatherSubject weatherSubject) : IWeatherObserver, IDisplay
+public class ThirdPartyDisplay : IWeatherObserver, IDisplay
 {
+    private readonly IWeatherSubject _weatherSubject;
     private int _currentTemperature;
     private int _currentHumidity;
     private int _currentPressure;
 
+    public ThirdPartyDisplay(IWeatherSubject weatherSubject)
+    {
+        _weatherSubject = weatherSubject;
+        _weatherSubject.RegisterObserver(this);
+    }
+
+    ~ThirdPartyDisplay()
+    {
+        _weatherSubject.RemoveObserver(this);
+    }
+
     public void Update()
     {
-        _currentTemperature = weatherSubject.GetTemperature();
-        _currentHumidity = weatherSubject.GetHumidity();
-        _currentPressure = weatherSubject.GetPressure();
+        _currentTemperature = _weatherSubject.GetTemperature();
+        _currentHumidity = _weatherSubject.GetHumidity();
+        _currentPressure = _weatherSubject.GetPressure();
 
         Display();
     }
