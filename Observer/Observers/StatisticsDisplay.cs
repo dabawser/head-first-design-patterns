@@ -3,7 +3,7 @@ using Observer.Subjects;
 
 namespace Observer.Observers;
 
-public class StatisticsDisplay(WeatherData weatherData) : IWeatherObserver, IDisplay
+public class StatisticsDisplay(IWeatherSubject weatherSubject) : IWeatherObserver, IDisplay
 {
     private readonly MeasurementStatistics _measurementStatistics = new();
     private double _temperatureSum;
@@ -40,7 +40,7 @@ public class StatisticsDisplay(WeatherData weatherData) : IWeatherObserver, IDis
 
     private void UpdateTemperatureStatistics()
     {
-        var temperature = weatherData.GetTemperature();
+        var temperature = weatherSubject.GetTemperature();
 
         _temperatureSum += temperature;
         _temperatureMeasurementCount++;
@@ -60,7 +60,7 @@ public class StatisticsDisplay(WeatherData weatherData) : IWeatherObserver, IDis
 
     private void UpdateHumidityStatistics()
     {
-        var humidity = weatherData.GetHumidity();
+        var humidity = weatherSubject.GetHumidity();
 
         _humiditySum += humidity;
         _humidityMeasurementCount++;
@@ -80,7 +80,7 @@ public class StatisticsDisplay(WeatherData weatherData) : IWeatherObserver, IDis
 
     private void UpdatePressureStatistics()
     {
-        var pressure = weatherData.GetPressure();
+        var pressure = weatherSubject.GetPressure();
 
         _pressureSum += pressure;
         _pressureMeasurementCount++;

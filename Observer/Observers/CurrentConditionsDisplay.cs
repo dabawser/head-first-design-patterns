@@ -3,7 +3,7 @@ using Observer.Subjects;
 
 namespace Observer.Observers;
 
-public class CurrentConditionsDisplay(WeatherData weatherData) : IWeatherObserver, IDisplay
+public class CurrentConditionsDisplay(IWeatherSubject weatherSubject) : IWeatherObserver, IDisplay
 {
     private double _currentTemperature;
     private double _currentHumidity;
@@ -11,9 +11,9 @@ public class CurrentConditionsDisplay(WeatherData weatherData) : IWeatherObserve
 
     public void Update()
     {
-        _currentTemperature = weatherData.GetTemperature();
-        _currentHumidity = weatherData.GetHumidity();
-        _currentPressure = weatherData.GetPressure();
+        _currentTemperature = weatherSubject.GetTemperature();
+        _currentHumidity = weatherSubject.GetHumidity();
+        _currentPressure = weatherSubject.GetPressure();
 
         Display();
     }
