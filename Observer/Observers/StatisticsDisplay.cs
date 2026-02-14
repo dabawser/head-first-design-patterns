@@ -6,13 +6,13 @@ namespace Observer.Observers;
 public class StatisticsDisplay(IWeatherSubject weatherSubject) : IWeatherObserver, IDisplay
 {
     private readonly MeasurementStatistics _measurementStatistics = new();
-    private int _temperatureSum;
+    private double _temperatureSum;
     private int _temperatureMeasurementCount;
 
-    private int _humiditySum;
+    private double _humiditySum;
     private int _humidityMeasurementCount;
 
-    private int _pressureSum;
+    private double _pressureSum;
     private int _pressureMeasurementCount;
 
     public void Update()
