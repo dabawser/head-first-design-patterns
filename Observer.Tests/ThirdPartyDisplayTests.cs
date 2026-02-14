@@ -25,8 +25,8 @@ public class ThirdPartyDisplayTests
     {
         var stringBuilder = new StringBuilder();
         stringBuilder.AppendLine("=== Third Party Weather Display ===");
-        stringBuilder.AppendLine("Temperature: 40,5°C");
-        stringBuilder.AppendLine("Humidity: 85,5%");
+        stringBuilder.AppendLine("Temperature: 40°C");
+        stringBuilder.AppendLine("Humidity: 85%");
         stringBuilder.AppendLine("Pressure: 1000 hPa");
         stringBuilder.Append("===================================");
         return stringBuilder.ToString();

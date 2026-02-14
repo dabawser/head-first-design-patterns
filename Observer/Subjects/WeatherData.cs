@@ -5,7 +5,7 @@ namespace Observer.Subjects;
 public class WeatherData : IWeatherSubject
 {
     private readonly List<IWeatherObserver> _observers = new();
-    private readonly Random _random = new();
+    private static readonly Random _random = new();
 
     public void RegisterObserver(IWeatherObserver weatherObserver)
     {
@@ -27,9 +27,9 @@ public class WeatherData : IWeatherSubject
         NotifyObservers();
     }
 
-    public virtual double GetTemperature() => -40.0d + (_random.NextDouble() * 99.9d);
+    public virtual int GetTemperature() => -40 + _random.Next(0, 100);
 
-    public virtual double GetHumidity() => _random.Next(0, 101);
+    public virtual int GetHumidity() => _random.Next(0, 101);
 
     public virtual int GetPressure() => _random.Next(970, 1051);
 }

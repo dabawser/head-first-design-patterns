@@ -5,7 +5,7 @@ namespace Observer.Tests;
 
 public static class WeatherDataFixture
 {
-    public static WeatherData CreateWeatherDataMock(double temperature = 40.5, double humidity = 85.5, int pressure = 1000)
+    public static WeatherData CreateWeatherDataMock(int temperature = 40, int humidity = 85, int pressure = 1000)
     {
         var weatherDataMock = new Mock<WeatherData>();
 

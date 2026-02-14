@@ -2,17 +2,17 @@
 
 public class MeasurementStatistics
 {
-    public double TemperatureAverage { get; set; }
+    public int TemperatureAverage { get; set; }
 
-    public double TemperatureMin { get; set; }
+    public int TemperatureMin { get; set; }
 
-    public double TemperatureMax { get; set; }
+    public int TemperatureMax { get; set; }
 
-    public double HumidityAverage { get; set; }
+    public int HumidityAverage { get; set; }
 
-    public double HumidityMin { get; set; }
+    public int HumidityMin { get; set; }
 
-    public double HumidityMax { get; set; }
+    public int HumidityMax { get; set; }
 
     public int PressureAverage { get; set; }
 

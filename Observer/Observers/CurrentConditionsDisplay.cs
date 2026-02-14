@@ -5,8 +5,8 @@ namespace Observer.Observers;
 
 public class CurrentConditionsDisplay(IWeatherSubject weatherSubject) : IWeatherObserver, IDisplay
 {
-    private double _currentTemperature;
-    private double _currentHumidity;
+    private int _currentTemperature;
+    private int _currentHumidity;
     private int _currentPressure;
 
     public void Update()

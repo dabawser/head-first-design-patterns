@@ -8,8 +8,8 @@ public class ForecastDisplayTests
     public void Update_WhenCalled_ThenDisplaysForecast()
     {
         // Arrange
-        const double temperature = 40.2;
-        const double humidity = 75.0;
+        const int temperature = 40;
+        const int humidity = 75;
         const int pressure = 1010;
 
         var weatherDataMock = WeatherDataFixture.CreateWeatherDataMock(temperature, humidity, pressure);

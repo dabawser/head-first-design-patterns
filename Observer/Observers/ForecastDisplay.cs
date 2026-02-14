@@ -5,8 +5,8 @@ namespace Observer.Observers;
 
 public class ForecastDisplay(IWeatherSubject weatherSubject) : IWeatherObserver, IDisplay
 {
-    private double _currentTemperature;
-    private double _lastTemperature = 20.0;
+    private int _currentTemperature;
+    private int _lastTemperature = 20;
 
     public void Update()
     {

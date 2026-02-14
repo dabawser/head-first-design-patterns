@@ -16,7 +16,7 @@ public class StatisticsDisplayTests
 
         // Assert
         Assert.Equal(
-            "Avg/Min/Max temperature = 40,5/0/40,5\nAvg/Min/Max humidity = 85,5/0/85,5\nAvg/Min/Max pressure = 1000/0/1000\n",
+            "Avg/Min/Max temperature = 40/0/40\nAvg/Min/Max humidity = 85/0/85\nAvg/Min/Max pressure = 1000/0/1000\n",
             statisticsDisplay.Display());
     }
 }

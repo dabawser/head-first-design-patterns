@@ -35,14 +35,14 @@ public interface IWeatherSubject
     /// Indicates that the measurements have changed and that observers should be notified. This method is typically
     /// called when the subject's state changes, such as when new weather data is available.
     /// </summary>
-    double GetTemperature();
+    int GetTemperature();
 
     /// <summary>
     /// Gets the current humidity level. This method is typically called by observers to retrieve the latest humidity
     /// data from the subject. The subject will return the current humidity level, which observers can then use to
     /// update their displays or perform other actions based on the new humidity data.
     /// </summary>
-    double GetHumidity();
+    int GetHumidity();
 
     /// <summary>
     /// Gets the current pressure level. This method is typically called by observers to retrieve the latest pressure
