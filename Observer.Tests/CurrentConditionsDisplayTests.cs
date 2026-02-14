@@ -11,8 +11,8 @@ public class CurrentConditionsDisplayTests
         const int temperature = 40;
         const int humidity = 80;
         const int pressure = 1013;
-        var weatherDataMock = WeatherDataFixture.CreateWeatherDataMock(temperature, humidity, pressure);
-        var currentConditionsDisplay = new CurrentConditionsDisplay(weatherDataMock);
+        var weatherSubject = DisplayFixture.CreateWeatherSubject(temperature, humidity, pressure);
+        var currentConditionsDisplay = new CurrentConditionsDisplay(weatherSubject);
 
         // Act
         currentConditionsDisplay.Update();

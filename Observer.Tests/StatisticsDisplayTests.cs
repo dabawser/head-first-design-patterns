@@ -8,8 +8,8 @@ public class StatisticsDisplayTests
     public void Update_WhenCalled_ThenDisplaysMeasurementStatistics()
     {
         // Arrange
-        var weatherDataMock = WeatherDataFixture.CreateWeatherDataMock();
-        var statisticsDisplay = new StatisticsDisplay(weatherDataMock);
+        var weatherSubject = DisplayFixture.CreateWeatherSubject();
+        var statisticsDisplay = new StatisticsDisplay(weatherSubject);
 
         // Act
         statisticsDisplay.Update();

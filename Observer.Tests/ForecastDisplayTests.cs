@@ -12,8 +12,8 @@ public class ForecastDisplayTests
         const int humidity = 75;
         const int pressure = 1010;
 
-        var weatherDataMock = WeatherDataFixture.CreateWeatherDataMock(temperature, humidity, pressure);
-        var forecastDisplay = new ForecastDisplay(weatherDataMock);
+        var weatherSubject = DisplayFixture.CreateWeatherSubject(temperature, humidity, pressure);
+        var forecastDisplay = new ForecastDisplay(weatherSubject);
 
         // Act
         forecastDisplay.Update();

@@ -3,11 +3,11 @@ using Observer.Subjects;
 
 namespace Observer.Tests;
 
-public static class WeatherDataFixture
+public static class DisplayFixture
 {
-    public static WeatherData CreateWeatherDataMock(int temperature = 40, int humidity = 85, int pressure = 1000)
+    public static IWeatherSubject CreateWeatherSubject(int temperature = 40, int humidity = 85, int pressure = 1000)
     {
-        var weatherDataMock = new Mock<WeatherData>();
+        var weatherDataMock = new Mock<IWeatherSubject>();
 
         weatherDataMock.Setup(x => x.GetTemperature()).Returns(temperature);
         weatherDataMock.Setup(x => x.GetHumidity()).Returns(humidity);

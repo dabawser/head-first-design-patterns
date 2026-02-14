@@ -10,8 +10,8 @@ public class ThirdPartyDisplayTests
     {
         // Arrange
         var expectedOutput = CreateExpectedOutput();
-        var weatherDataMock = WeatherDataFixture.CreateWeatherDataMock();
-        var thirdPartyDisplay = new ThirdPartyDisplay(weatherDataMock);
+        var weatherSubject = DisplayFixture.CreateWeatherSubject();
+        var thirdPartyDisplay = new ThirdPartyDisplay(weatherSubject);
 
         // Act
         thirdPartyDisplay.Update();
