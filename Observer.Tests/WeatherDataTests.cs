@@ -56,7 +56,7 @@ public class WeatherDataTests
 
         // Assert
         Assert.InRange(temperature, -40, 60);
-        Assert.InRange(humidity, 0.0d, 100.0d);
+        Assert.InRange(humidity, 0, 100);
         Assert.InRange(pressure, 970, 1050);
     }
 }
