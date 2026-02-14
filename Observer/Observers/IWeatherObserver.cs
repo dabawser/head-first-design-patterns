@@ -5,7 +5,7 @@
 /// implementing classes to define the Update method, which will be called by the subject to notify the observer of
 /// changes in the subject's state.
 /// </summary>
-public interface IObserver
+public interface IWeatherObserver
 {
     /// <summary>
     /// The Update method is called by the subject to notify the observer of changes in the subject's state. When this
