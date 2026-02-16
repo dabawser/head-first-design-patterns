@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Strategy\Strategy.csproj" />
+        <ProjectReference Include="..\Decorator\Decorator.csproj" />
     </ItemGroup>
 
 </Project>
