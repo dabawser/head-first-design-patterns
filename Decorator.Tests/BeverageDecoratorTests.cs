@@ -3,7 +3,7 @@ using Decorator.Condiments;
 
 namespace Decorator.Tests;
 
-public class CondimentsDecoratorTests
+public class BeverageDecoratorTests
 {
     [Fact]
     public void DarkRoastWithMilk_WhenGetDescriptionCalled_ReturnsDescriptionOfEntireBeverage()
@@ -20,7 +20,7 @@ public class CondimentsDecoratorTests
     }
 
     [Fact]
-    public void DarkRoastWithMilk_WhenCostCalled_ReturnsTotalCostOfBeverage()
+    public void HouseBlendWithMilk_WhenCostCalled_ReturnsTotalCostOfBeverage()
     {
         // Arrange
         var houseBlend = new HouseBlend();
