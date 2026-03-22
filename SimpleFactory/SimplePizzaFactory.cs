@@ -6,18 +6,13 @@ public class SimplePizzaFactory
 {
     public Pizza CreatePizza(string type)
     {
-        switch (type)
+        return type switch
         {
-            case "Cheese":
-                return new CheesePizza();
-            case "Veggie":
-                return new VeggiePizza();
-            case "Clam":
-                return new ClamPizza();
-            case "Pepperoni":
-                return new PepperoniPizza();
-            default:
-                throw new ArgumentException("Invalid pizza type");
-        }
+            "Cheese" => new CheesePizza(),
+            "Veggie" => new VeggiePizza(),
+            "Clam" => new ClamPizza(),
+            "Pepperoni" => new PepperoniPizza(),
+            _ => throw new ArgumentException("Invalid pizza type"),
+        };
     }
 }
