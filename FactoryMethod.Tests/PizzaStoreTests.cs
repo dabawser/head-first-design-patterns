@@ -28,7 +28,7 @@ public class PizzaStoreTests
     [InlineData("Pepperoni", typeof(ChicagoStylePepperoniPizza))]
     [InlineData("Veggie", typeof(ChicagoStyleVeggiePizza))]
     [InlineData("Clam", typeof(ChicagoStyleClamPizza))]
-    public void ChicagoPizzaStore_ShouldCreateNewYorkStylePizza(
+    public void ChicagoPizzaStore_ShouldCreateChicagoStylePizza(
         string pizzaType, Type expectedPizzaType)
     {
         // Arrange
